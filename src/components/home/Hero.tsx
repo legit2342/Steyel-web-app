@@ -30,7 +30,7 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-        <Link href="/home" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image src="/images/logo.png" alt="Steyel" width={140} height={45} className="h-9 w-auto" priority />
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
