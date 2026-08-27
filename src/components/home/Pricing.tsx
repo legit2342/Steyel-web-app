@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 const BASIC_FEATURES = [
   { text: "Limited to three scans, refreshed daily", enabled: true },
@@ -20,15 +21,15 @@ export default function Pricing() {
   return (
     <section id="pricing" className="bg-[#0b0a0f] px-6 py-24">
       <div className="mx-auto max-w-5xl">
-        <div className="flex flex-col items-center pb-16">
+        <Reveal className="flex flex-col items-center pb-16">
           <h2 className="text-5xl font-semibold tracking-tight text-white">
             Pricing <span className="bg-gradient-to-r from-white to-[#a855f7] bg-clip-text text-transparent">Plan</span>
           </h2>
           <div className="mt-4 h-0.5 w-64 bg-gradient-to-r from-transparent via-[#9333ea] to-transparent shadow-[0_0_15px_0_#9333ea]" />
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="relative rounded-[40px] border-2 border-[#3655c1]/50 bg-[#0a0a0f]/80 p-12">
+          <Reveal className="relative rounded-[40px] border-2 border-[#3655c1]/50 bg-[#0a0a0f]/80 p-12 transition-all duration-300 hover:-translate-y-2 hover:border-[#5b7cff] hover:shadow-[0_25px_60px_-20px_rgba(59,90,246,0.4)]">
             <div className="flex items-baseline justify-between">
               <h3 className="text-3xl font-bold tracking-wide text-white">Basic</h3>
               <span className="text-5xl font-bold text-white">$0.00</span>
@@ -50,11 +51,14 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div className="relative overflow-hidden rounded-[40px] border-2 border-[#3655c1] bg-[#170f36]/50 p-12">
+          <Reveal
+            delay={150}
+            className="relative overflow-hidden rounded-[40px] border-2 border-[#3655c1] bg-[#170f36]/50 p-12 transition-all duration-300 hover:-translate-y-2 hover:border-[#8b5fe8] hover:shadow-[0_25px_60px_-20px_rgba(139,95,232,0.5)]"
+          >
             <span
-              className="absolute -right-8 -top-6 flex w-[150px] items-center justify-center rounded-b-lg py-1 text-xs font-bold uppercase tracking-widest text-white"
+              className="animate-pulse-glow absolute -right-8 -top-6 flex w-[150px] items-center justify-center rounded-b-lg py-1 text-xs font-bold uppercase tracking-widest text-white"
               style={{ backgroundImage: "linear-gradient(135deg, rgb(99,102,241) 0%, rgb(168,85,247) 100%)" }}
             >
               Popular
@@ -75,10 +79,10 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            <button className="mt-12 rounded-full bg-[#da2619] px-8 py-3 text-base font-medium text-white transition-colors hover:bg-[#c0210f]">
+            <button className="mt-12 rounded-full bg-[#da2619] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-[#c0210f]">
               Cancel
             </button>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 export default function PaymentsBar() {
   return (
     <section className="bg-[#0b0a0f] px-6 pb-8">
-      <div
-        className="mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-[30px] border border-[#3704c1] px-8 py-12 text-center"
+      <Reveal
+        className="mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-[30px] border border-[#3704c1] px-8 py-12 text-center transition-colors duration-300 hover:border-[#5b12e0]"
         style={{ backgroundImage: "linear-gradient(179deg, rgb(54,1,63) 124%, rgb(0,0,0) 107%)" }}
       >
         <p className="flex items-center gap-2 text-2xl font-light text-white">
@@ -18,7 +19,7 @@ export default function PaymentsBar() {
           height={51}
           className="h-auto w-full max-w-md"
         />
-      </div>
+      </Reveal>
     </section>
   );
 }

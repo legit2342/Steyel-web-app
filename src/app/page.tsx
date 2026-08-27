@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import BodyBackground from "@/components/home/BodyBackground";
 import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
 import Features from "@/components/home/Features";
@@ -27,6 +28,7 @@ export default function Home() {
     <main
       className={`${plusJakartaSans.variable} bg-[#0b0a0f] font-[family-name:var(--font-plus-jakarta-sans)]`}
     >
+      <BodyBackground color="#0b0a0f" />
       <Hero />
       <StatsRow />
       <HowItWorks />

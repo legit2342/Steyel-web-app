@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Reveal from "./Reveal";
 
 const QUESTIONS = [
   {
@@ -35,11 +36,11 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="bg-[#0b0a0f] px-6 py-24">
-      <div className="mx-auto max-w-4xl text-center">
+      <Reveal className="mx-auto max-w-4xl text-center">
         <h2 className="text-4xl font-medium text-white sm:text-5xl">Frequently Asked Questions</h2>
         <p className="mt-4 text-lg font-light text-white/60">
           If you have further pressing questions, or require any assistance, please{" "}
-          <a href="#contact" className="font-bold text-white underline">
+          <a href="#contact" className="font-bold text-white underline transition-colors hover:text-[#a855f7]">
             contact us
           </a>
         </p>
@@ -48,34 +49,39 @@ export default function FAQ() {
           {QUESTIONS.map((item, i) => {
             const isOpen = openIndex === i;
             return (
-              <div
-                key={item.q}
-                className={`overflow-hidden rounded-[20px] border border-white/10 backdrop-blur-md transition-colors ${
-                  isOpen ? "bg-[#8607ff]/50" : "bg-white/[0.02]"
-                }`}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? -1 : i)}
-                  className="flex w-full items-center justify-between gap-4 px-8 py-6 text-left"
-                  aria-expanded={isOpen}
+              <Reveal key={item.q} delay={Math.min(i * 60, 300)}>
+                <div
+                  className={`overflow-hidden rounded-[20px] border border-white/10 backdrop-blur-md transition-all duration-300 ${
+                    isOpen ? "bg-[#8607ff]/50" : "bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.05]"
+                  }`}
                 >
-                  <span className="text-lg text-white">{item.q}</span>
-                  <Image
-                    src="/images/home/faq/chevron1.svg"
-                    alt=""
-                    width={14}
-                    height={8}
-                    className={`shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {isOpen && (
-                  <p className="px-8 pb-6 text-base leading-relaxed text-white/50">{item.a}</p>
-                )}
-              </div>
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                    className="flex w-full items-center justify-between gap-4 px-8 py-6 text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-lg text-white">{item.q}</span>
+                    <Image
+                      src="/images/home/faq/chevron1.svg"
+                      alt=""
+                      width={14}
+                      height={8}
+                      className={`shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <p className="overflow-hidden px-8 pb-6 text-base leading-relaxed text-white/50">{item.a}</p>
+                  </div>
+                </div>
+              </Reveal>
             );
           })}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

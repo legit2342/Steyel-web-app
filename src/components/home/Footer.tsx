@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 const ABOUT_LINKS = [
   { label: "How It Works", href: "#how-it-works" },
@@ -13,14 +14,22 @@ const LEGAL_LINKS = ["Cookie/GDPR", "Privacy Policy", "Terms of Use", "PIPEDA Po
 export default function Footer() {
   return (
     <footer className="rounded-t-[40px] border border-[#4d2f91] bg-[#04050b] px-8 py-16 sm:px-16">
-      <div className="mx-auto flex max-w-6xl flex-col gap-16 sm:flex-row sm:justify-between">
+      <Reveal className="mx-auto flex max-w-6xl flex-col gap-16 sm:flex-row sm:justify-between">
         <div className="flex flex-col gap-10">
           <Image src="/images/logo.png" alt="Steyel" width={200} height={50} className="h-10 w-auto -rotate-[0.64deg]" />
           <div className="flex items-center gap-6">
-            <a href="#" aria-label="Instagram">
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
               <Image src="/images/home/footer/instagram.svg" alt="" width={32} height={34} />
             </a>
-            <a href="#" aria-label="TikTok">
+            <a
+              href="#"
+              aria-label="TikTok"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
               <Image src="/images/home/footer/tiktok.svg" alt="" width={32} height={33} />
             </a>
           </div>
@@ -32,7 +41,10 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               {ABOUT_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-white/80 transition-colors hover:text-white">
+                  <a
+                    href={link.href}
+                    className="inline-block text-white/80 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -44,7 +56,10 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               {LEGAL_LINKS.map((label) => (
                 <li key={label}>
-                  <a href="#" className="text-white/80 transition-colors hover:text-white">
+                  <a
+                    href="#"
+                    className="inline-block text-white/80 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                  >
                     {label}
                   </a>
                 </li>
@@ -52,7 +67,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <div className="mx-auto mt-16 max-w-6xl border-t border-white/10 pt-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">

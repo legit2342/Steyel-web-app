@@ -1,13 +1,15 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 export default function CTA() {
   return (
     <section className="px-6 pb-24">
-      <div
+      <Reveal
+        animation="fade-in zoom-in-95 duration-700 ease-out"
         className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 overflow-hidden rounded-[64px] border border-white/10 px-8 py-24 text-center"
         style={{ backgroundImage: "linear-gradient(161deg, rgb(18,11,46) 0%, rgb(10,5,26) 100%)" }}
       >
-        <div className="pointer-events-none absolute -bottom-48 -left-48 size-96 rounded-full bg-[#a855f7]/10 blur-[75px]" />
+        <div className="animate-pulse-glow pointer-events-none absolute -bottom-48 -left-48 size-96 rounded-full bg-[#a855f7]/10 blur-[75px]" />
 
         <h2 className="relative text-5xl font-bold text-white sm:text-6xl">
           Your next outfit is
@@ -20,7 +22,7 @@ export default function CTA() {
         <div className="relative flex flex-wrap items-center justify-center gap-6 pt-6">
           <a
             href="#download"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4"
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
           >
             <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[30px] w-auto" />
             <span className="flex flex-col leading-tight">
@@ -32,7 +34,7 @@ export default function CTA() {
           </a>
           <a
             href="#download"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4"
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
           >
             <Image src="/images/home/cta/gplay-icon.svg" alt="" width={30} height={30} />
             <span className="flex flex-col leading-tight">
@@ -43,7 +45,7 @@ export default function CTA() {
             </span>
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
