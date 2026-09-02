@@ -32,6 +32,13 @@ export default function Footer() {
             >
               <Image src="/images/home/footer/tiktok.svg" alt="" width={32} height={33} />
             </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Image src="/images/home/footer/facebook.svg" alt="" width={20} height={30} />
+            </a>
           </div>
         </div>
 
