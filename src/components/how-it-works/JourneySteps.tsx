@@ -9,7 +9,7 @@ const STEPS = [
     description:
       "Start by uploading a picture containing the fashion item you're interested in. Use our elegant interface to select your muse.",
     cta: "Upload Image",
-    image: "/images/features/hero/phone-screen.png",
+    image: "/images/how-it-works/journey/step1-photo.png",
     reverse: false,
   },
   {
@@ -19,10 +19,10 @@ const STEPS = [
     description:
       "Our proprietary AI analyzes the image to identify every layer of the outfit, from designer tags to unique fabric patterns.",
     chips: [
-      { icon: "/images/features/curation/icon-dna.svg", title: "Neural Fabric Analysis", subtitle: "Identifying silk, cotton, or wool with 99% accuracy" },
-      { icon: "/images/features/curation/icon-inventory.svg", title: "Brand Signature Recognition", subtitle: "Scanning for logos, buttons, and unique stitching" },
+      { icon: "/images/how-it-works/journey/step2-icon-fabric.svg", title: "Neural Fabric Analysis", subtitle: "Identifying silk, cotton, or wool with 99% accuracy" },
+      { icon: "/images/how-it-works/journey/step2-icon-brand.svg", title: "Brand Signature Recognition", subtitle: "Scanning for logos, buttons, and unique stitching" },
     ],
-    image: "/images/home/hero/hero-photo.png",
+    image: "/images/how-it-works/journey/step2-photo.png",
     reverse: true,
   },
   {
@@ -32,10 +32,14 @@ const STEPS = [
     description:
       "Receive instant shopping links to exact matches or curated alternatives that perfectly capture the aesthetic of the original look.",
     chips: [
-      { icon: "/images/features/grid/icon-tag.svg", title: "Direct Merchant Links", subtitle: "Shop directly from over 5,000+ luxury and streetwear retailers" },
-      { icon: "/images/features/curation/icon-sustainability.svg", title: "Aesthetic Alternatives", subtitle: "Get budget-friendly options that match the look" },
+      { icon: "/images/how-it-works/journey/step3-icon-merchant.svg", title: "Direct Merchant Links", subtitle: "Shop directly from over 5,000+ luxury and streetwear retailers" },
+      { icon: "/images/how-it-works/journey/step3-icon-alternatives.svg", title: "Aesthetic Alternatives", subtitle: "Get budget-friendly options that match the look" },
     ],
-    matches: ["/images/features/grid/sneakers.png", "/images/features/grid/tags.png", "/images/features/grid/moodboard.png"],
+    matches: [
+      "/images/how-it-works/journey/step3-match-1.png",
+      "/images/how-it-works/journey/step3-match-2.png",
+      "/images/how-it-works/journey/step3-match-3.png",
+    ],
     reverse: false,
   },
   {
@@ -45,10 +49,14 @@ const STEPS = [
     description:
       "Organize your finds into curated boards. Categorize by season, occasion, or celebrity to build your ultimate digital dream closet.",
     chips: [
-      { icon: "/images/features/grid/icon-boards.svg", title: "Custom Categories", subtitle: "Sort by Date Night, Winter Essentials or Office Chic" },
-      { icon: "/images/features/grid/icon-discovery.svg", title: "Collaborative Boards", subtitle: "Share your collections with friends or professional stylists" },
+      { icon: "/images/how-it-works/journey/step4-icon-categories.svg", title: "Custom Categories", subtitle: "Sort by Date Night, Winter Essentials or Office Chic" },
+      { icon: "/images/how-it-works/journey/step4-icon-collaborative.svg", title: "Collaborative Boards", subtitle: "Share your collections with friends or professional stylists" },
     ],
-    board: ["/images/features/hero/coat-card.png", "/images/features/hero/necklace-card.png", "/images/features/hero/sneaker-card.png"],
+    board: [
+      "/images/how-it-works/journey/step4-board-1.png",
+      "/images/how-it-works/journey/step4-board-2.png",
+      "/images/how-it-works/journey/step4-board-3.png",
+    ],
     reverse: true,
   },
 ];
