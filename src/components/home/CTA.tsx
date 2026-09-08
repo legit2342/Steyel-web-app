@@ -21,7 +21,7 @@ export default function CTA() {
 
         <div className="relative flex flex-wrap items-center justify-center gap-6 pt-6">
           <a
-            href="#download"
+            href="/download"
             className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
           >
             <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[30px] w-auto" />
@@ -33,7 +33,7 @@ export default function CTA() {
             </span>
           </a>
           <a
-            href="#download"
+            href="/download"
             className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
           >
             <Image src="/images/home/cta/gplay-icon.svg" alt="" width={30} height={30} />

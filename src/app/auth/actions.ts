@@ -41,6 +41,22 @@ export async function signup(formData: FormData) {
   redirect("/signup?check-email=1");
 }
 
+export async function resetPassword(formData: FormData) {
+  const supabase = await createClient();
+
+  const email = formData.get("email") as string;
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/login`,
+  });
+
+  if (error) {
+    redirect(`/login?reset-error=${encodeURIComponent(error.message)}`);
+  }
+
+  redirect("/login?reset-sent=1");
+}
+
 export async function logout() {
   const supabase = await createClient();
   await supabase.auth.signOut();

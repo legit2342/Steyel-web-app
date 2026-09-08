@@ -80,7 +80,7 @@ export default async function PricingPlans() {
                   </button>
                 ) : (
                   <a
-                    href="#download"
+                    href="/download"
                     className="mt-12 inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
                   >
                     {plan.cta_label}

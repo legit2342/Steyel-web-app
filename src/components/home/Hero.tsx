@@ -54,7 +54,7 @@ export default function Hero() {
             style={{ animationDelay: "300ms" }}
           >
             <a
-              href="#download"
+              href="/download"
               className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.03] px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/[0.08]"
             >
               <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[30px] w-auto" />
@@ -66,7 +66,7 @@ export default function Hero() {
               </span>
             </a>
             <a
-              href="#download"
+              href="/download"
               className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.03] px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/[0.08]"
             >
               <Image
