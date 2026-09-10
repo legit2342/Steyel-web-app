@@ -1,15 +1,42 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import AccountProfilePhoto from "@/components/dashboard/AccountProfilePhoto";
 import AccountSecurityForm from "@/components/dashboard/AccountSecurityForm";
+import AccountSubscription from "@/components/dashboard/AccountSubscription";
 import AccountDangerZone from "@/components/dashboard/AccountDangerZone";
 
 export const metadata: Metadata = {
   title: "Account Settings — Steyel",
 };
 
-export default async function AccountSettingsPage() {
+type Usage = {
+  remaining_scans: number | null;
+  is_unlimited: boolean;
+  plan_slug: "basic" | "premium";
+  plan_name: string;
+  cancel_at_period_end: boolean;
+  current_period_end: string | null;
+};
+
+type SearchParams = { checkout?: string; downgrade?: string; error?: string };
+
+function resolveBanner({ checkout, downgrade, error }: SearchParams) {
+  if (error) return { tone: "error" as const, message: error };
+  if (checkout === "success") return { tone: "success" as const, message: "Payment successful — your account has been updated." };
+  if (checkout === "cancelled") return { tone: "info" as const, message: "Checkout was cancelled — no charge was made." };
+  if (downgrade === "scheduled") return { tone: "info" as const, message: "You'll switch to the Basic plan at the end of your current billing period." };
+  if (downgrade === "cancelled") return { tone: "success" as const, message: "Your Premium subscription will continue — the downgrade was cancelled." };
+  return null;
+}
+
+export default async function AccountSettingsPage({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const params = await searchParams;
+  const banner = resolveBanner(params);
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -19,6 +46,13 @@ export default async function AccountSettingsPage() {
   const avatarUrl = (user?.user_metadata?.avatar_url as string | undefined) ?? null;
   const displayName = (user?.user_metadata?.full_name as string | undefined) || email.split("@")[0];
   const initial = displayName.charAt(0).toUpperCase();
+
+  const [{ data: usageRows }, { data: creditPackages }] = await Promise.all([
+    supabase.rpc("get_my_usage"),
+    supabase.from("credit_packages").select("id, credits, price").order("sort_order"),
+  ]);
+
+  const usage = (usageRows as Usage[] | null)?.[0];
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-6">
@@ -38,47 +72,38 @@ export default async function AccountSettingsPage() {
           )}
           <span className="text-sm font-semibold text-white">{displayName}</span>
           <span className="rounded-full border border-[#a855f7]/40 bg-[#a855f7]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#c084fc]">
-            Free Member
+            {usage?.plan_slug === "premium" ? "Pro Member" : "Free Member"}
           </span>
         </div>
       </div>
+
+      {banner && (
+        <p
+          className={`rounded-xl px-4 py-3 text-sm ${
+            banner.tone === "success"
+              ? "bg-green-500/10 text-green-400"
+              : banner.tone === "error"
+                ? "bg-red-500/10 text-red-400"
+                : "bg-white/5 text-white/70"
+          }`}
+        >
+          {banner.message}
+        </p>
+      )}
 
       <AccountProfilePhoto email={email} initialAvatarUrl={avatarUrl} />
       <AccountSecurityForm email={email} />
 
-      <div className="flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-        <div className="flex items-center gap-2.5">
-          <span className="flex size-7 items-center justify-center rounded-lg bg-white/10">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path
-                d="M2 5.5 5 7l3-4 3 4 3-1.5-1 6.5H3l-1-6.5Z"
-                stroke="white"
-                strokeWidth="1.3"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <h3 className="text-lg font-bold text-white">Subscription</h3>
-        </div>
-
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/20 p-5">
-          <div className="flex items-center gap-4">
-            <span className="flex h-10 items-center justify-center rounded-xl bg-white/10 px-4 text-sm font-bold text-white">
-              FREE
-            </span>
-            <div>
-              <p className="font-bold text-white">Free Plan</p>
-              <p className="text-sm text-white/50">Limited scans and standard support.</p>
-            </div>
-          </div>
-          <Link
-            href="/pricing"
-            className="rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
-          >
-            Upgrade to Pro
-          </Link>
-        </div>
-      </div>
+      <AccountSubscription
+        planSlug={usage?.plan_slug ?? "basic"}
+        planName={usage?.plan_name ?? "Basic"}
+        remainingScans={usage?.remaining_scans ?? null}
+        cancelAtPeriodEnd={usage?.cancel_at_period_end ?? false}
+        currentPeriodEnd={usage?.current_period_end ?? null}
+        creditPackages={
+          (creditPackages ?? []).map((p) => ({ id: p.id as string, credits: p.credits as number, price: Number(p.price) }))
+        }
+      />
 
       <AccountDangerZone />
     </div>
