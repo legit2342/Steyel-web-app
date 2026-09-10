@@ -1,15 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "./Reveal";
 
 const ABOUT_LINKS = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQs", href: "#faq" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Features", href: "/features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-const LEGAL_LINKS = ["Cookie/GDPR", "Privacy Policy", "Terms of Use", "PIPEDA Policy"];
+const LEGAL_LINKS = [
+  { label: "Cookie/GDPR", href: "/legal/gdpr-policy" },
+  { label: "Privacy Policy", href: "/legal/privacy-policy" },
+  { label: "Terms of Use", href: "/legal/terms-of-use" },
+  { label: "PIPEDA Policy", href: "/legal/pipeda-policy" },
+];
 
 export default function Footer() {
   return (
@@ -48,12 +54,12 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               {ABOUT_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="inline-block text-white/80 transition-all duration-200 hover:translate-x-1 hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -61,14 +67,14 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <h5 className="text-lg font-bold text-[#8b6fd4]">Legal</h5>
             <ul className="flex flex-col gap-4">
-              {LEGAL_LINKS.map((label) => (
-                <li key={label}>
-                  <a
-                    href="#"
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
                     className="inline-block text-white/80 transition-all duration-200 hover:translate-x-1 hover:text-white"
                   >
-                    {label}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

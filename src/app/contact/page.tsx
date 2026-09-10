@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import BodyBackground from "@/components/home/BodyBackground";
 import Footer from "@/components/home/Footer";
 import CTA from "@/components/home/CTA";
+import Header from "@/components/layout/Header";
 import ContactSection from "@/components/contact/ContactSection";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -21,7 +22,7 @@ export default function ContactPage() {
       className={`${plusJakartaSans.variable} bg-[#0b0a0f] font-[family-name:var(--font-plus-jakarta-sans)]`}
     >
       <BodyBackground color="#0b0a0f" />
-      <ContactSection />
+      <ContactSection header={<Header />} />
       <CTA />
       <Footer />
     </main>

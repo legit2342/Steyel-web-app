@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
+  { label: "Privacy Policy", href: "/legal/privacy-policy" },
+  { label: "Terms of Service", href: "/legal/terms-of-use" },
 ];
 
 export default function AuthShell({ children }: { children: React.ReactNode }) {

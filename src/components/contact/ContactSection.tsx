@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useActionState, useEffect, useRef } from "react";
-import Header from "@/components/layout/Header";
 import Reveal from "@/components/home/Reveal";
 import { sendContactMessage, type ContactFormState } from "@/app/contact/actions";
 
@@ -14,7 +13,7 @@ const SOCIALS = [
   { name: "Facebook", icon: "/images/home/footer/facebook.svg", width: 14, height: 20 },
 ];
 
-export default function ContactSection() {
+export default function ContactSection({ header }: { header: React.ReactNode }) {
   const [state, formAction, pending] = useActionState(sendContactMessage, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -31,7 +30,7 @@ export default function ContactSection() {
         backgroundImage: "radial-gradient(circle at 50% 0%, rgba(88,28,135,0.4) 0%, transparent 55%)",
       }}
     >
-      <Header />
+      {header}
 
       <div className="relative mx-auto grid max-w-6xl gap-6 px-6 pt-10 lg:grid-cols-2">
         <Reveal className="rounded-[32px] border border-white/10 bg-white/[0.03] p-8 sm:p-10">
