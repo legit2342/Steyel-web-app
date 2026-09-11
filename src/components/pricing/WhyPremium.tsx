@@ -5,7 +5,7 @@ const FEATURES = [
   {
     icon: "/images/pricing/why-premium/icon-scans.png",
     thumb: "/images/pricing/why-premium/thumb-scans.png",
-    title: "12 daily scans (rather than 3 for basic users)",
+    title: "Unlimited daily scans",
     description: "Scan as many outfits as you need to find your perfect match, anytime.",
   },
   {
