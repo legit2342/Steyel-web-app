@@ -14,7 +14,7 @@ export default function DownloadHero() {
     <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#08060d]">
       <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6">
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Image src="/images/logo.png" alt="Steyel" width={140} height={45} className="h-9 w-auto" priority />
+          <Image src="/images/logo.png" alt="Steyel" width={168} height={54} className="h-11 w-auto" priority />
         </Link>
         <Link href="/" className="text-sm font-semibold text-white transition-colors hover:text-white/70">
           Back to Home
