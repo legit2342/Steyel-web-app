@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import BodyBackground from "@/components/home/BodyBackground";
 import Footer from "@/components/home/Footer";
+import CTA from "@/components/home/CTA";
 import FeaturesHero from "@/components/features/FeaturesHero";
 import FeatureGrid from "@/components/features/FeatureGrid";
 import CurationEngine from "@/components/features/CurationEngine";
@@ -27,6 +28,7 @@ export default function FeaturesPage() {
       <FeatureGrid />
       <CurationEngine />
       <FeaturesCTA />
+      <CTA />
       <Footer />
     </main>
   );
