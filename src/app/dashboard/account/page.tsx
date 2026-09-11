@@ -61,7 +61,7 @@ export default async function AccountSettingsPage({
           <h1 className="text-3xl font-bold text-white">Account Settings</h1>
           <p className="mt-1 text-sm text-white/50">Manage your profile, credentials, and subscription preferences.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={avatarUrl} alt="" className="size-9 rounded-full object-cover" />
@@ -71,6 +71,19 @@ export default async function AccountSettingsPage({
             </span>
           )}
           <span className="text-sm font-semibold text-white">{displayName}</span>
+          {usage?.is_unlimited ? (
+            <span className="flex items-center gap-1.5 rounded-full border border-[#4c6fff]/40 bg-gradient-to-r from-[#4c6fff]/15 to-[#8b5fe8]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#a5b4ff]">
+              <span aria-hidden className="text-xs leading-none">∞</span>
+              Unlimited Scans
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white/70">
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden>
+                <path d="M9 1 2.5 9.5h4L6 15l6.5-8.5h-4L9 1Z" fill="currentColor" />
+              </svg>
+              {usage?.remaining_scans ?? 0} Scans Left
+            </span>
+          )}
           <span className="rounded-full border border-[#a855f7]/40 bg-[#a855f7]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#c084fc]">
             {usage?.plan_slug === "premium" ? "Pro Member" : "Free Member"}
           </span>
