@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import UserMenu from "./UserMenu";
+import MobileNav from "./MobileNav";
 
 const NAV_LINKS = [
   { label: "Features", href: "/features" },
@@ -59,6 +60,7 @@ export default async function Header() {
         >
           Download App
         </a>
+        <MobileNav navLinks={NAV_LINKS} isLoggedIn={Boolean(user?.email)} />
       </div>
     </div>
   );
