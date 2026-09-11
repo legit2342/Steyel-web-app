@@ -52,7 +52,9 @@ export default function AccountSubscription({
             <p className="text-sm text-white/50">
               {isPremium
                 ? "Unlimited scans, moodboards, and priority support."
-                : `${remainingScans ?? 0} of 3 scans remaining today.`}
+                : (remainingScans ?? 0) <= 3
+                  ? `${remainingScans ?? 0} of 3 free scans remaining today.`
+                  : `${remainingScans} scans remaining (includes purchased credits).`}
             </p>
           </div>
         </div>
