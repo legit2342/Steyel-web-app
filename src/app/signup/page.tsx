@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import AuthShell from "@/components/auth/AuthShell";
 import SignupForm from "@/components/auth/SignupForm";
+
+export const metadata: Metadata = {
+  title: "Sign Up — Steyel",
+  description: "Create your Steyel account to start scanning outfits and finding the pieces you love.",
+};
 
 export default async function SignupPage({
   searchParams,

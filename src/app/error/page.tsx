@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Error — Steyel",
+  description: "Something went wrong.",
+};
 
 export default async function ErrorPage({
   searchParams,

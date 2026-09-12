@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import AuthShell from "@/components/auth/AuthShell";
 import LoginForm from "@/components/auth/LoginForm";
+
+export const metadata: Metadata = {
+  title: "Log In — Steyel",
+  description: "Log in to your Steyel account to access your wardrobe boards and saved finds.",
+};
 
 export default async function LoginPage({
   searchParams,
