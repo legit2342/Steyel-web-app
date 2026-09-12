@@ -76,7 +76,7 @@ export default function DashboardSidebar() {
     <>
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-white/5 bg-[#0a0812] px-4 py-8 md:flex">
         <Link href="/" className="flex items-center gap-2 px-2">
-          <Image src="/images/logo.png" alt="Steyel" width={160} height={52} className="h-10 w-auto" />
+          <Image src="/images/logo.png" alt="Steyel" width={119} height={52} className="h-10 w-auto" />
         </Link>
 
         <nav className="mt-10 flex flex-col gap-1.5">

@@ -10,7 +10,7 @@ export default function AuthShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-4 py-16">
       <Link href="/" className="flex flex-col items-center gap-2">
-        <Image src="/images/logo.png" alt="Steyel" width={160} height={52} className="h-11 w-auto" priority />
+        <Image src="/images/logo.png" alt="Steyel" width={119} height={52} className="h-11 w-auto" priority />
         <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8b93ff]">
           Digital Wardrobe Couture
         </span>
