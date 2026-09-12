@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="rounded-t-[40px] border border-[#4d2f91] bg-[#04050b] px-8 py-16 sm:px-16">
       <Reveal className="mx-auto flex max-w-6xl flex-col gap-16 sm:flex-row sm:justify-between">
         <div className="flex flex-col gap-10">
-          <Image src="/images/logo.png" alt="Steyel" width={114} height={50} className="h-10 w-auto" />
+          <Image src="/images/logo.png" alt="Steyel" width={124} height={54} className="h-11 w-auto" />
           <div className="flex items-center gap-6">
             <a
               href="#"
