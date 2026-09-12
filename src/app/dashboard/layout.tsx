@@ -1,13 +1,10 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { getAuthUser } from "@/lib/supabase/server";
 import BodyBackground from "@/components/home/BodyBackground";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 
 export default async function DashboardLayout({ children }: LayoutProps<"/dashboard">) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getAuthUser();
 
   if (!user) {
     redirect("/login");

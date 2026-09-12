@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, getAuthUser } from "@/lib/supabase/server";
 import AccountProfilePhoto from "@/components/dashboard/AccountProfilePhoto";
 import AccountSecurityForm from "@/components/dashboard/AccountSecurityForm";
 import AccountSubscription from "@/components/dashboard/AccountSubscription";
@@ -38,9 +38,7 @@ export default async function AccountSettingsPage({
   const banner = resolveBanner(params);
 
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getAuthUser();
 
   const email = user?.email ?? "";
   const avatarUrl = (user?.user_metadata?.avatar_url as string | undefined) ?? null;

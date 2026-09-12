@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, getAuthUser } from "@/lib/supabase/server";
 import OverviewStats from "@/components/dashboard/OverviewStats";
 import RecentOutfitHistory from "@/components/dashboard/RecentOutfitHistory";
 
@@ -22,9 +22,7 @@ const SAVED_ITEMS_BOARDS = 3;
 
 export default async function DashboardOverviewPage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getAuthUser();
 
   const email = user?.email ?? "";
   const avatarUrl = (user?.user_metadata?.avatar_url as string | undefined) ?? null;
