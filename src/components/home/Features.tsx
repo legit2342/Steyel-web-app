@@ -16,7 +16,7 @@ const FEATURES = [
     title: "Brand & Price Match",
     description: "Integrated with over 5,000 global retailers to give you real-time pricing and stock status.",
     image: "/images/home/features/brand-price-match.png",
-    imageAspect: "aspect-[530/337]",
+    imageAspect: "aspect-[1564/1006]",
   },
   {
     icon: "/images/home/features/icon-folder.svg",
