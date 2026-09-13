@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Reveal from "@/components/home/Reveal";
 import { createClient } from "@/lib/supabase/server";
+import { startPremiumCheckout } from "@/app/dashboard/billing-actions";
 
 type PlanFeature = {
   label: string;
@@ -9,6 +10,7 @@ type PlanFeature = {
 
 type Plan = {
   id: string;
+  slug: string;
   name: string;
   price: number;
   billing_label: string;
@@ -22,7 +24,7 @@ async function getPlans(): Promise<Plan[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("pricing_plans")
-    .select("id, name, price, billing_label, cta_label, cta_style, is_featured, pricing_plan_features(label, enabled, sort_order)")
+    .select("id, slug, name, price, billing_label, cta_label, cta_style, is_featured, pricing_plan_features(label, enabled, sort_order)")
     .order("sort_order")
     .order("sort_order", { referencedTable: "pricing_plan_features" });
 
@@ -78,6 +80,16 @@ export default async function PricingPlans() {
                   <button className="mt-12 self-start rounded-full bg-[#da2619] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-[#c0210f]">
                     {plan.cta_label}
                   </button>
+                ) : plan.slug === "premium" ? (
+                  <form action={startPremiumCheckout} className="mt-12 self-start">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
+                    >
+                      {plan.cta_label}
+                      <span aria-hidden>↗</span>
+                    </button>
+                  </form>
                 ) : (
                   <a
                     href="/download"

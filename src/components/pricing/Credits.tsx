@@ -1,5 +1,6 @@
 import Reveal from "@/components/home/Reveal";
 import { createClient } from "@/lib/supabase/server";
+import { startCreditsCheckout } from "@/app/dashboard/billing-actions";
 
 type CreditPackage = {
   id: string;
@@ -37,9 +38,15 @@ export default async function Credits() {
               <p className="text-lg font-medium text-white">{pkg.credits} Credits</p>
               <p className="mt-4 text-4xl font-bold text-white">${pkg.price.toFixed(0)}</p>
               <div className="my-6 h-px w-full bg-white/10" />
-              <button className="w-full rounded-full bg-[#9333ea] py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-[#7e22ce]">
-                Buy
-              </button>
+              <form action={startCreditsCheckout} className="w-full">
+                <input type="hidden" name="packageId" value={pkg.id} />
+                <button
+                  type="submit"
+                  className="w-full rounded-full bg-[#9333ea] py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-[#7e22ce]"
+                >
+                  Buy
+                </button>
+              </form>
             </div>
           ))}
         </div>
