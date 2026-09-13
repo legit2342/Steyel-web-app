@@ -1,7 +1,23 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 
-const FEATURES = [
+type FeatureTag = {
+  label: string;
+  left: string;
+  top: string;
+  connector?: { left: string; top: string; width: string; height: string };
+};
+
+const FEATURES: {
+  icon: string;
+  iconBg: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAspect: string;
+  imageFit?: string;
+  tags?: FeatureTag[];
+}[] = [
   {
     icon: "/images/home/features/icon-scan.svg",
     iconBg: "bg-[#4c6fff]/10",
@@ -9,6 +25,21 @@ const FEATURES = [
     description: "Proprietary vision AI that recognizes 200+ garment types with 99.2% accuracy.",
     image: "/images/home/features/ai-outfit-scan.png",
     imageAspect: "aspect-[558/336]",
+    imageFit: "object-cover",
+    tags: [
+      {
+        label: "Sunglasses",
+        left: "1.8%",
+        top: "45.5%",
+        connector: { left: "14%", top: "52.7%", width: "10.6%", height: "5.4%" },
+      },
+      {
+        label: "Sneakers",
+        left: "1.6%",
+        top: "72%",
+        connector: { left: "16.1%", top: "78.2%", width: "10.6%", height: "5.4%" },
+      },
+    ],
   },
   {
     icon: "/images/home/features/icon-tag.svg",
@@ -73,8 +104,30 @@ export default function Features() {
                   src={feature.image}
                   alt={feature.title}
                   fill
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  className={`${feature.imageFit ?? "object-contain"} transition-transform duration-500 group-hover:scale-105`}
                 />
+                {feature.tags?.map((tag) => (
+                  <span key={tag.label}>
+                    {tag.connector && (
+                      <span
+                        className="absolute border-r-2 border-b-2 border-[#a855f7]/60"
+                        style={{
+                          left: tag.connector.left,
+                          top: tag.connector.top,
+                          width: tag.connector.width,
+                          height: tag.connector.height,
+                        }}
+                      />
+                    )}
+                    <span
+                      className="absolute flex items-center gap-2 rounded-lg border border-white/10 bg-[#210c36]/90 px-3 py-2 text-[10px] font-bold whitespace-nowrap text-white shadow-lg backdrop-blur-sm"
+                      style={{ left: tag.left, top: tag.top }}
+                    >
+                      <span className="size-2 shrink-0 rounded-full bg-[#a855f7] shadow-[0_0_8px_2px_rgba(168,85,247,0.8)]" />
+                      {tag.label}
+                    </span>
+                  </span>
+                ))}
               </div>
             </Reveal>
           ))}
