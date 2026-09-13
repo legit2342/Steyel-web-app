@@ -32,18 +32,6 @@ export default function CTA() {
               <span className="text-xl font-bold text-white">App Store</span>
             </span>
           </a>
-          <a
-            href="/download"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
-          >
-            <Image src="/images/home/cta/gplay-icon.svg" alt="" width={30} height={30} />
-            <span className="flex flex-col leading-tight">
-              <span className="text-[10px] font-bold uppercase tracking-wide text-white/40">
-                Get it on
-              </span>
-              <span className="text-xl font-bold text-white">Google Play</span>
-            </span>
-          </a>
         </div>
       </Reveal>
     </section>

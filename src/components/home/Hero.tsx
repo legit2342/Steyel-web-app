@@ -65,24 +65,6 @@ export default function Hero() {
                 <span className="text-lg font-bold text-white">App Store</span>
               </span>
             </a>
-            <a
-              href="/download"
-              className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.03] px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/[0.08]"
-            >
-              <Image
-                src="/images/icons/google-play.svg"
-                alt=""
-                width={26}
-                height={28}
-                className="h-7 w-auto"
-              />
-              <span className="flex flex-col leading-tight">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#9ca3af]">
-                  Get it on
-                </span>
-                <span className="text-lg font-bold text-white">Google Play</span>
-              </span>
-            </a>
           </div>
         </div>
 
