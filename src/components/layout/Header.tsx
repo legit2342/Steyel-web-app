@@ -21,7 +21,7 @@ export default async function Header() {
   return (
     <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
       <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-        <Image src="/images/logo.png" alt="Steyel" width={124} height={54} className="h-11 w-auto" priority />
+        <Image src="/images/logo.png" alt="Steyel" width={165} height={72} className="h-14 w-auto sm:h-[72px]" priority />
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
         {NAV_LINKS.map((link) => (
