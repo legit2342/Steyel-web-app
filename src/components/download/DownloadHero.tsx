@@ -91,8 +91,37 @@ export default function DownloadHero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-3xl px-6 pb-8 pt-16 text-center">
-        <div className="border-t border-white/10 pt-6">
-          <p className="text-sm text-white/30">© 2025 STEYEL. All rights Reserved</p>
+        <div className="flex flex-col items-center gap-6 border-t border-white/10 pt-6">
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.instagram.com/getsteyel/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Image src="/images/home/footer/instagram.svg" alt="" width={24} height={26} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@getsteyel"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Image src="/images/home/footer/tiktok.svg" alt="" width={24} height={25} />
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61592555783394"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
+            >
+              <Image src="/images/home/footer/facebook.svg" alt="" width={15} height={23} />
+            </a>
+          </div>
+          <p className="text-sm text-white/30">© 2026 STEYEL. All rights Reserved</p>
         </div>
       </div>
     </section>
