@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { createClient } from "@/lib/supabase/server";
+import { startPremiumCheckout, downgradeToBasic } from "@/app/dashboard/billing-actions";
 
 type PlanFeature = {
   label: string;
@@ -9,6 +11,7 @@ type PlanFeature = {
 
 type Plan = {
   id: string;
+  slug: string;
   name: string;
   price: number;
   billing_label: string;
@@ -22,15 +25,28 @@ async function getPlans(): Promise<Plan[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("pricing_plans")
-    .select("id, name, price, billing_label, cta_label, cta_style, is_featured, pricing_plan_features(label, enabled, sort_order)")
+    .select("id, slug, name, price, billing_label, cta_label, cta_style, is_featured, pricing_plan_features(label, enabled, sort_order)")
     .order("sort_order")
     .order("sort_order", { referencedTable: "pricing_plan_features" });
 
   return (data as Plan[]) ?? [];
 }
 
+async function getCurrentPlanSlug(): Promise<string | null> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data } = await supabase.rpc("get_my_usage");
+  const usage = (data as { plan_slug: string }[] | null)?.[0];
+  return usage?.plan_slug ?? "basic";
+}
+
 export default async function Pricing() {
-  const plans = await getPlans();
+  const [plans, currentPlanSlug] = await Promise.all([getPlans(), getCurrentPlanSlug()]);
+  const isLoggedIn = currentPlanSlug !== null;
 
   return (
     <section id="pricing" className="bg-[#0b0a0f] px-6 py-24">
@@ -88,14 +104,41 @@ export default async function Pricing() {
                   <button className="mt-12 self-start rounded-full bg-[#da2619] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-[#c0210f]">
                     {plan.cta_label}
                   </button>
-                ) : (
-                  <a
-                    href="/download"
+                ) : !isLoggedIn ? (
+                  <Link
+                    href="/signup"
                     className="mt-12 inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
                   >
                     {plan.cta_label}
                     <span aria-hidden>↗</span>
-                  </a>
+                  </Link>
+                ) : plan.slug === currentPlanSlug ? (
+                  <button
+                    type="button"
+                    disabled
+                    className="mt-12 cursor-default self-start rounded-full border border-white/15 px-8 py-3 text-base font-medium text-white/60"
+                  >
+                    Current Plan
+                  </button>
+                ) : plan.slug === "premium" ? (
+                  <form action={startPremiumCheckout} className="mt-12 self-start">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
+                    >
+                      {plan.cta_label}
+                      <span aria-hidden>↗</span>
+                    </button>
+                  </form>
+                ) : (
+                  <form action={downgradeToBasic} className="mt-12 self-start">
+                    <button
+                      type="submit"
+                      className="rounded-full border border-white/15 px-8 py-3 text-base font-medium text-white/80 transition-colors duration-300 hover:border-white/30 hover:text-white"
+                    >
+                      Downgrade
+                    </button>
+                  </form>
                 )}
               </Reveal>
             );
