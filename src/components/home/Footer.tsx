@@ -27,21 +27,27 @@ export default function Footer() {
           </Link>
           <div className="flex items-center gap-6">
             <a
-              href="#"
+              href="https://www.instagram.com/getsteyel/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
             >
               <Image src="/images/home/footer/instagram.svg" alt="" width={32} height={34} />
             </a>
             <a
-              href="#"
+              href="https://www.tiktok.com/@getsteyel"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="TikTok"
               className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
             >
               <Image src="/images/home/footer/tiktok.svg" alt="" width={32} height={33} />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61592555783394"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:scale-110"
             >
@@ -86,7 +92,7 @@ export default function Footer() {
 
       <div className="mx-auto mt-16 max-w-6xl border-t border-white/10 pt-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-white/40">© 2025 Steyel. All rights Reserved</p>
+          <p className="text-white/40">© 2026 Steyel. All rights Reserved</p>
           <p className="flex items-center gap-2 text-sm text-white/30">
             <Image
               src="/images/home/footer/secure-shield.svg"

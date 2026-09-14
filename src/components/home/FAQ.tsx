@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import Reveal from "./Reveal";
 
@@ -40,9 +41,9 @@ export default function FAQ() {
         <h2 className="text-4xl font-medium text-white sm:text-5xl">Frequently Asked Questions</h2>
         <p className="mt-4 text-lg font-light text-white/60">
           If you have further pressing questions, or require any assistance, please{" "}
-          <a href="#contact" className="font-bold text-white underline transition-colors hover:text-[#a855f7]">
+          <Link href="/contact" className="font-bold text-white underline transition-colors hover:text-[#a855f7]">
             contact us
-          </a>
+          </Link>
         </p>
 
         <div className="mt-12 flex flex-col gap-4 text-left">
