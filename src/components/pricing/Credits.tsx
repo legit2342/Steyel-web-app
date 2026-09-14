@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { createClient } from "@/lib/supabase/server";
 import { startCreditsCheckout } from "@/app/dashboard/billing-actions";
@@ -18,8 +19,16 @@ async function getCreditPackages(): Promise<CreditPackage[]> {
   return (data as CreditPackage[]) ?? [];
 }
 
+async function getIsLoggedIn(): Promise<boolean> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  return Boolean(user);
+}
+
 export default async function Credits() {
-  const packages = await getCreditPackages();
+  const [packages, isLoggedIn] = await Promise.all([getCreditPackages(), getIsLoggedIn()]);
 
   return (
     <section className="bg-[#0b0a0f] px-6 pb-16">
@@ -38,15 +47,24 @@ export default async function Credits() {
               <p className="text-lg font-medium text-white">{pkg.credits} Credits</p>
               <p className="mt-4 text-4xl font-bold text-white">${pkg.price.toFixed(0)}</p>
               <div className="my-6 h-px w-full bg-white/10" />
-              <form action={startCreditsCheckout} className="w-full">
-                <input type="hidden" name="packageId" value={pkg.id} />
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[#9333ea] py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-[#7e22ce]"
+              {isLoggedIn ? (
+                <form action={startCreditsCheckout} className="w-full">
+                  <input type="hidden" name="packageId" value={pkg.id} />
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-[#9333ea] py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-[#7e22ce]"
+                  >
+                    Buy
+                  </button>
+                </form>
+              ) : (
+                <Link
+                  href="/signup"
+                  className="w-full rounded-full bg-[#9333ea] py-3 text-center text-sm font-bold text-white transition-colors duration-300 hover:bg-[#7e22ce]"
                 >
                   Buy
-                </button>
-              </form>
+                </Link>
+              )}
             </div>
           ))}
         </div>
