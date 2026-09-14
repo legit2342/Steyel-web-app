@@ -7,7 +7,7 @@ export default function PricingHero() {
     <section className="relative overflow-hidden bg-[#020617]">
       <div className="absolute inset-0">
         <Image src="/images/pricing/hero/Container.png" alt="" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative">
