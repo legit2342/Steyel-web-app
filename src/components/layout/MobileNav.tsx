@@ -53,23 +53,18 @@ export default function MobileNav({
               {link.label}
             </Link>
           ))}
-          <div className="my-1.5 h-px bg-white/10" />
           {!isLoggedIn && (
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm font-medium text-[#a29fb0] transition-colors hover:bg-white/[0.06] hover:text-white"
-            >
-              Log In
-            </Link>
+            <>
+              <div className="my-1.5 h-px bg-white/10" />
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-sm font-medium text-[#a29fb0] transition-colors hover:bg-white/[0.06] hover:text-white"
+              >
+                Log In
+              </Link>
+            </>
           )}
-          <a
-            href="/download"
-            onClick={() => setOpen(false)}
-            className="mt-1 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-4 py-3 text-center text-sm font-semibold text-white"
-          >
-            Download App
-          </a>
         </div>
       )}
     </>

@@ -100,7 +100,7 @@ export default async function PricingPlans() {
                     className="mt-12 inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
                   >
                     {plan.cta_label}
-                    <span aria-hidden>↗</span>
+                    <span aria-hidden>↗︎</span>
                   </Link>
                 ) : plan.slug === currentPlanSlug ? (
                   <button
@@ -117,7 +117,7 @@ export default async function PricingPlans() {
                       className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
                     >
                       {plan.cta_label}
-                      <span aria-hidden>↗</span>
+                      <span aria-hidden>↗︎</span>
                     </button>
                   </form>
                 ) : (

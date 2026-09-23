@@ -56,22 +56,22 @@ export default function HowItWorks() {
         ))}
 
         <Reveal delay={360} className="group relative flex flex-col items-center text-center">
-          <div className="mb-6 flex h-[270px] w-[190px] flex-col items-center justify-center gap-4 rounded-[28px] border-4 border-[#2a2a35] bg-[#0b0b0f] p-4 shadow-2xl transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#3b82f6]/50 group-hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.4)]">
+          <div className="mb-6 flex h-[270px] w-[130px] flex-col items-center justify-center gap-3 overflow-hidden rounded-[28px] border-4 border-[#2a2a35] bg-[#0b0b0f] p-2.5 shadow-2xl transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#3b82f6]/50 group-hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.4)]">
             <span
-              className="flex size-14 items-center justify-center rounded-full"
+              className="flex size-10 shrink-0 items-center justify-center rounded-full"
               style={{ backgroundImage: "linear-gradient(144deg, rgb(168,85,247) 0%, rgb(59,130,246) 100%)" }}
             >
-              <Image src="/images/home/howitworks/check_icon.svg" alt="" width={24} height={24} />
+              <Image src="/images/home/howitworks/check_icon.svg" alt="" width={18} height={18} />
             </span>
             <div>
-              <p className="text-base font-bold text-white">Item Saved!</p>
-              <p className="mt-1 text-xs text-white/60">Added to your &lsquo;Winter Closet&rsquo; board.</p>
+              <p className="text-xs font-bold text-white">Item Saved!</p>
+              <p className="mt-1 text-[10px] leading-snug text-white/60">Added to your &lsquo;Winter Closet&rsquo; board.</p>
             </div>
-            <div className="flex w-full flex-col gap-2">
-              <button className="w-full rounded-lg bg-white py-2 text-xs font-bold text-[#0b0b0f] transition-colors hover:bg-white/90">
+            <div className="flex w-full flex-col gap-1.5">
+              <button className="w-full rounded-lg bg-white py-1.5 text-[10px] font-bold text-[#0b0b0f] transition-colors hover:bg-white/90">
                 Shop on Website
               </button>
-              <button className="w-full rounded-lg bg-white/10 py-2 text-xs font-bold text-white transition-colors hover:bg-white/20">
+              <button className="w-full rounded-lg bg-white/10 py-1.5 text-[10px] font-bold text-white transition-colors hover:bg-white/20">
                 View in Board
               </button>
             </div>

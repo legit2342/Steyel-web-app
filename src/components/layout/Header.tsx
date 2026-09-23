@@ -54,12 +54,6 @@ export default async function Header() {
             </Link>
           </>
         )}
-        <a
-          href="/download"
-          className="hidden rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_28px_-6px_rgba(139,95,232,0.7)] sm:inline-block"
-        >
-          Download App
-        </a>
         <MobileNav navLinks={NAV_LINKS} isLoggedIn={Boolean(user?.email)} />
       </div>
     </div>

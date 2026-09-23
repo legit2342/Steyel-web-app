@@ -25,7 +25,7 @@ export default function ContactSection({ header }: { header: React.ReactNode }) 
 
   return (
     <section
-      className="relative overflow-hidden bg-[#020617] pb-24"
+      className="relative overflow-hidden bg-[#020617] pb-40"
       style={{
         backgroundImage: "radial-gradient(circle at 50% 0%, rgba(88,28,135,0.4) 0%, transparent 55%)",
       }}
@@ -93,7 +93,7 @@ export default function ContactSection({ header }: { header: React.ReactNode }) 
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-all duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
               >
                 {pending ? "Sending…" : "Submit"}
-                {!pending && <span aria-hidden>↗</span>}
+                {!pending && <span aria-hidden>↗︎</span>}
               </button>
             </div>
           </form>
