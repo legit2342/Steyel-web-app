@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function CTA() {
   return (
-    <section className="px-6 pb-24">
+    <section className="px-6 pb-24 pt-16">
       <Reveal
         animation="fade-in zoom-in-95 duration-700 ease-out"
         className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 overflow-hidden rounded-[64px] border border-white/10 px-8 py-24 text-center"
