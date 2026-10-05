@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { login } from "@/app/auth/actions";
 import ResetPasswordModal from "./ResetPasswordModal";
+import SocialAuthButtons from "./SocialAuthButtons";
 
 export default function LoginForm({
   error,
@@ -25,7 +26,9 @@ export default function LoginForm({
         <p className="mt-4 rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-400">{error}</p>
       )}
 
-      <form action={login} className="mt-8 flex flex-col gap-5">
+      <SocialAuthButtons />
+
+      <form action={login} className="mt-6 flex flex-col gap-5">
         <label className="flex flex-col gap-2">
           <span className="text-xs font-semibold uppercase tracking-wide text-white/50">Email Address</span>
           <input
