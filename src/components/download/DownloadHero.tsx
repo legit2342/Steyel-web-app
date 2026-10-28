@@ -2,13 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { APP_STORE_URL } from "@/lib/links";
-
-const QR_PATTERN = [
-  1, 1, 0, 1, 1, 1, 0, 0, 1,
-  1, 0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 1, 0, 1, 1, 0, 1, 0,
-  1, 1, 0, 1, 0, 0, 1, 1, 1,
-];
+import AppStoreQr from "./AppStoreQr";
 
 export default function DownloadHero() {
   return (
@@ -51,11 +45,7 @@ export default function DownloadHero() {
             </a>
 
             <div className="flex flex-col items-center gap-2">
-              <div className="grid grid-cols-6 gap-0.5 rounded-2xl bg-white p-3">
-                {QR_PATTERN.map((filled, i) => (
-                  <span key={i} className={`size-2 rounded-[1px] ${filled ? "bg-[#08060d]" : "bg-transparent"}`} />
-                ))}
-              </div>
+              <AppStoreQr />
               <span className="text-xs text-white/40">Scan to download</span>
             </div>
           </div>
