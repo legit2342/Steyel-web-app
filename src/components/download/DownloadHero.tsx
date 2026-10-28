@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
+import { APP_STORE_URL } from "@/lib/links";
 
 const QR_PATTERN = [
   1, 1, 0, 1, 1, 1, 0, 0, 1,
@@ -35,7 +36,9 @@ export default function DownloadHero() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
             <a
-              href="#"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-2xl border border-white/20 bg-black px-6 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-white/40"
             >
               <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[26px] w-auto" />

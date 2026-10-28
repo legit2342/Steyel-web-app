@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { APP_STORE_URL } from "@/lib/links";
 
 export default function CTA() {
   return (
@@ -21,7 +22,9 @@ export default function CTA() {
 
         <div className="relative flex flex-wrap items-center justify-center gap-6 pt-6">
           <a
-            href="/download"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/80"
           >
             <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[30px] w-auto" />

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Header from "@/components/layout/Header";
+import { APP_STORE_URL } from "@/lib/links";
 
 const TAGS = [
   { name: "Gold Bracelet", meta: "CARTIER • $6,500", className: "left-[62%] top-[36%] w-36", delay: "0s" },
@@ -54,7 +55,9 @@ export default function Hero() {
             style={{ animationDelay: "300ms" }}
           >
             <a
-              href="/download"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.03] px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/[0.08]"
             >
               <Image src="/images/icons/apple.svg" alt="" width={23} height={30} className="h-[30px] w-auto" />
