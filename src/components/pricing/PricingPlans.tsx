@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
-import { createClient } from "@/lib/supabase/server";
-import { startPremiumCheckout, downgradeToBasic } from "@/app/dashboard/billing-actions";
+import { createPublicClient } from "@/lib/supabase/public";
 
 type PlanFeature = {
   label: string;
@@ -22,8 +21,7 @@ type Plan = {
 };
 
 async function getPlans(): Promise<Plan[]> {
-  const supabase = await createClient();
-  const { data } = await supabase
+  const { data } = await createPublicClient()
     .from("pricing_plans")
     .select("id, slug, name, price, billing_label, cta_label, cta_style, is_featured, pricing_plan_features(label, enabled, sort_order)")
     .order("sort_order")
@@ -32,21 +30,8 @@ async function getPlans(): Promise<Plan[]> {
   return (data as Plan[]) ?? [];
 }
 
-async function getCurrentPlanSlug(): Promise<string | null> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
-
-  const { data } = await supabase.rpc("get_my_usage");
-  const usage = (data as { plan_slug: string }[] | null)?.[0];
-  return usage?.plan_slug ?? "basic";
-}
-
 export default async function PricingPlans() {
-  const [plans, currentPlanSlug] = await Promise.all([getPlans(), getCurrentPlanSlug()]);
-  const isLoggedIn = currentPlanSlug !== null;
+  const plans = await getPlans();
 
   return (
     <section id="pricing-plan" className="bg-[#0b0a0f] px-6 py-24">
@@ -90,46 +75,17 @@ export default async function PricingPlans() {
                     </li>
                   ))}
                 </ul>
-                {plan.cta_style === "danger" ? (
-                  <button className="mt-12 self-start rounded-full bg-[#da2619] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-[#c0210f]">
-                    {plan.cta_label}
-                  </button>
-                ) : !isLoggedIn ? (
-                  <Link
-                    href="/signup"
-                    className="mt-12 inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
-                  >
-                    {plan.cta_label}
-                    <span aria-hidden>↗︎</span>
-                  </Link>
-                ) : plan.slug === currentPlanSlug ? (
-                  <button
-                    type="button"
-                    disabled
-                    className="mt-12 cursor-default self-start rounded-full border border-white/15 px-8 py-3 text-base font-medium text-white/60"
-                  >
-                    Current Plan
-                  </button>
-                ) : plan.slug === "premium" ? (
-                  <form action={startPremiumCheckout} className="mt-12 self-start">
-                    <button
-                      type="submit"
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105"
-                    >
-                      {plan.cta_label}
-                      <span aria-hidden>↗︎</span>
-                    </button>
-                  </form>
-                ) : (
-                  <form action={downgradeToBasic} className="mt-12 self-start">
-                    <button
-                      type="submit"
-                      className="rounded-full border border-white/15 px-8 py-3 text-base font-medium text-white/80 transition-colors duration-300 hover:border-white/30 hover:text-white"
-                    >
-                      Downgrade
-                    </button>
-                  </form>
-                )}
+                <Link
+                  href="/download"
+                  className={`mt-12 inline-flex items-center gap-2 self-start rounded-full px-8 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 ${
+                    plan.cta_style === "danger"
+                      ? "bg-[#da2619] hover:bg-[#c0210f]"
+                      : "bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8]"
+                  }`}
+                >
+                  {plan.cta_label}
+                  {plan.cta_style !== "danger" && <span aria-hidden>↗︎</span>}
+                </Link>
               </Reveal>
             );
           })}

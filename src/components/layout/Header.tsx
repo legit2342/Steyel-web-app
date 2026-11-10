@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-import UserMenu from "./UserMenu";
 import MobileNav from "./MobileNav";
 
 const NAV_LINKS = [
@@ -12,12 +10,7 @@ const NAV_LINKS = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-export default async function Header() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+export default function Header() {
   return (
     <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
       <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
@@ -36,25 +29,13 @@ export default async function Header() {
         ))}
       </nav>
       <div className="flex items-center gap-3">
-        {user?.email ? (
-          <UserMenu email={user.email} />
-        ) : (
-          <>
-            <Link
-              href="/login"
-              className="hidden rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] sm:inline-flex"
-            >
-              Log In
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_28px_-6px_rgba(139,95,232,0.7)]"
-            >
-              Sign Up
-            </Link>
-          </>
-        )}
-        <MobileNav navLinks={NAV_LINKS} isLoggedIn={Boolean(user?.email)} />
+        <Link
+          href="/download"
+          className="rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_28px_-6px_rgba(139,95,232,0.7)]"
+        >
+          Download App
+        </Link>
+        <MobileNav navLinks={NAV_LINKS} />
       </div>
     </div>
   );

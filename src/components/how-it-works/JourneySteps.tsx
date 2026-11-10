@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/home/Reveal";
 
@@ -109,9 +110,12 @@ export default function JourneySteps() {
               <p className="mt-4 max-w-md text-base leading-relaxed text-[#94a3b8]">{s.description}</p>
 
               {s.cta && (
-                <button className="mt-6 rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-transform duration-300 hover:scale-105">
+                <Link
+                  href="/download"
+                  className="mt-6 inline-block rounded-full bg-gradient-to-r from-[#4c6fff] to-[#8b5fe8] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(76,111,255,0.5)] transition-transform duration-300 hover:scale-105"
+                >
                   {s.cta}
-                </button>
+                </Link>
               )}
 
               {s.chips && (

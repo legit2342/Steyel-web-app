@@ -5,13 +5,7 @@ import { useEffect, useState } from "react";
 
 type NavLink = { label: string; href: string };
 
-export default function MobileNav({
-  navLinks,
-  isLoggedIn,
-}: {
-  navLinks: NavLink[];
-  isLoggedIn: boolean;
-}) {
+export default function MobileNav({ navLinks }: { navLinks: NavLink[] }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -53,18 +47,6 @@ export default function MobileNav({
               {link.label}
             </Link>
           ))}
-          {!isLoggedIn && (
-            <>
-              <div className="my-1.5 h-px bg-white/10" />
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-3 text-sm font-medium text-[#a29fb0] transition-colors hover:bg-white/[0.06] hover:text-white"
-              >
-                Log In
-              </Link>
-            </>
-          )}
         </div>
       )}
     </>

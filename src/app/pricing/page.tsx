@@ -4,7 +4,6 @@ import BodyBackground from "@/components/home/BodyBackground";
 import Footer from "@/components/home/Footer";
 import FAQ from "@/components/home/FAQ";
 import CTA from "@/components/home/CTA";
-import PaymentsBar from "@/components/home/PaymentsBar";
 import PricingHero from "@/components/pricing/PricingHero";
 import PricingPlans from "@/components/pricing/PricingPlans";
 import Credits from "@/components/pricing/Credits";
@@ -14,6 +13,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
 });
+
+// Prices come from Supabase; re-fetch them at most every 5 minutes.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Pricing — Steyel",
@@ -29,7 +31,6 @@ export default function PricingPage() {
       <PricingHero />
       <PricingPlans />
       <Credits />
-      <PaymentsBar />
       <WhyPremium />
       <FAQ />
       <CTA />

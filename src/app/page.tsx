@@ -7,7 +7,6 @@ import Features from "@/components/home/Features";
 import Footer from "@/components/home/Footer";
 import Hero from "@/components/home/Hero";
 import HowItWorks from "@/components/home/HowItWorks";
-import PaymentsBar from "@/components/home/PaymentsBar";
 import Pricing from "@/components/home/Pricing";
 import StatsRow from "@/components/home/StatsRow";
 import UseCases from "@/components/home/UseCases";
@@ -16,6 +15,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
 });
+
+// Prices come from Supabase; re-fetch them at most every 5 minutes.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Steyel — See it. Scan it. Wear it.",
@@ -35,7 +37,6 @@ export default function Home() {
       <Features />
       <UseCases />
       <Pricing />
-      <PaymentsBar />
       <FAQ />
       <CTA />
       <Footer />
