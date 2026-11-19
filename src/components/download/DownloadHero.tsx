@@ -105,7 +105,7 @@ export default function DownloadHero() {
               <Image src="/images/home/footer/tiktok.svg" alt="" width={24} height={25} />
             </a>
             <a
-              href="https://www.facebook.com/profile.php?id=61592555783394"
+              href="https://www.facebook.com/profile.php?id=61584129825378"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
