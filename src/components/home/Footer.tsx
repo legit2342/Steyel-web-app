@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import BuiltBy from "@/components/layout/BuiltBy";
 
 const ABOUT_LINKS = [
   { label: "How It Works", href: "/how-it-works" },
@@ -93,6 +94,7 @@ export default function Footer() {
       <div className="mx-auto mt-16 max-w-6xl border-t border-white/10 pt-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-white/40">© 2026 Steyel. All rights Reserved</p>
+          <BuiltBy className="order-last sm:order-none" />
           <p className="flex items-center gap-2 text-sm text-white/30">
             <Image
               src="/images/home/footer/secure-shield.svg"

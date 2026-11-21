@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { APP_STORE_URL } from "@/lib/links";
 import AppStoreQr from "./AppStoreQr";
+import BuiltBy from "@/components/layout/BuiltBy";
 
 export default function DownloadHero() {
   return (
@@ -115,6 +116,7 @@ export default function DownloadHero() {
             </a>
           </div>
           <p className="text-sm text-white/30">© 2026 STEYEL. All rights Reserved</p>
+          <BuiltBy className="-mt-4" />
         </div>
       </div>
     </section>
